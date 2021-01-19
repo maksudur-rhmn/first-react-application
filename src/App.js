@@ -18,9 +18,31 @@ function App() {
         >
           Learn React
         </a>
+        <p>Learn React</p>
+        <Test />
+        <Test />
+        <Test />
+        <Test />
+        <Test />
       </header>
     </div>
   );
+}
+
+function Test()
+{
+  const testStyle = {
+    border : '2px solid red',
+    margin: '10px',
+    padding: '10px'
+  }
+  return (
+      <div style={testStyle}>
+        <h5>Hulla lla heyo !!</h5>
+        <h4>Another</h4>
+      </div>
+  )
+    
 }
 
 export default App;
