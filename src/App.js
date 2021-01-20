@@ -3,46 +3,59 @@ import logo from './logo.svg';
 import './App.css';
 
 function App() {
+  const products = [
+    {name: 'Photoshop', price: '$90.99'},
+    {name: 'Illustrator', price: '$80.99'},
+    {name: 'PDF Reader', price: '$40.99'},
+  ]
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit done <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-        <p>Learn React</p>
-        <Test />
-        <Test />
-        <Test />
-        <Test />
-        <Test />
+        <Product products={products[0]}/>
+        <Product products={products[1]}/>
+        <Product products={products[2]}/>
+        <Person name="Sagol" profession="bekar"/>
+        <Person name="Pagol" profession="mental occurance"/>
+        <Person name="Shiplu" profession="boisha thaka"/>
       </header>
     </div>
   );
 }
-
-function Test()
+function Person(props)
 {
-  const testStyle = {
-    border : '2px solid red',
-    margin: '10px',
-    padding: '10px'
+
+  const personStyle = {
+    border : '2px solid gold',
+    width  : '400px',
+    margin : '10px',
+    padding: '10px' 
   }
   return (
-      <div style={testStyle}>
-        <h5>Hulla lla heyo !!</h5>
-        <h4>Another</h4>
-      </div>
+    <div style={personStyle}>
+      <h3>My name : {props.name}</h3>
+      <p>My profession : {props.profession}</p>
+    </div>
   )
-    
+}
+
+function Product(props)
+{
+  const productStyle = {
+    border: '1px solid gray',
+    borderRadius : '5px',
+    backgroundColor : 'lightgray',
+    width: '300px',
+    height: '300px',
+    float : 'left',
+  }
+  const {name, price} = props.products
+  return(
+      <div style={productStyle}>
+      <h2>{name}</h2>
+      <h1>{price}</h1>
+      <button>Buy now</button>
+    </div>
+  )
 }
 
 export default App;
