@@ -1,25 +1,77 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import logo from './logo.svg';
 import './App.css';
 
 function App() {
+
+  const nayoks = ['Shafique', 'Rafique', 'Tafique', 'Mafique', 'notun', 'aro notun']
+
   const products = [
     {name: 'Photoshop', price: '$90.99'},
     {name: 'Illustrator', price: '$80.99'},
     {name: 'PDF Reader', price: '$40.99'},
+    {name: 'Adobe XD', price: '249.99'}
   ]
+
+  const productNames = products.map(product => product.name)
+  console.log(productNames)
   return (
     <div className="App">
       <header className="App-header">
-        <Product products={products[0]}/>
-        <Product products={products[1]}/>
-        <Product products={products[2]}/>
+        
+        <Users />
+        <Counter />
+
+        <ul>
+          {
+            nayoks.map(nayok => <li>{nayok}</li>)
+          }
+          {
+            products.map(product => <li>{product.name}</li>)
+          }
+        </ul>
+        {
+          products.map(product => <Product products={product} />)
+        }
         <Person name="Sagol" profession="bekar"/>
         <Person name="Pagol" profession="mental occurance"/>
         <Person name="Shiplu" profession="boisha thaka"/>
       </header>
     </div>
   );
+}
+
+function Users()
+{
+  const [users, setUsers] = useState([])
+
+  useEffect(()=> {
+    fetch('https://jsonplaceholder.typicode.com/users')
+    .then(res  => res.json())
+    .then(data => setUsers(data))
+  }, [])
+  return(
+    <div>
+      <h4>Dynamic users : {users.length}</h4>
+      <ul>
+        {
+          users.map(user => <li>{user.name} | <span>{user.address.street}</span> </li>)
+        }
+      </ul>
+    </div>
+  )
+}
+
+function Counter()
+{
+  const [count, setCount] = useState(10)
+  return(
+    <div>
+      <h1>Count : {count}</h1>
+      <button onClick={ () => setCount(count - 1) }> <strong> - </strong> </button>
+      <button onClick={() => setCount(count + 1)}> <strong> + </strong> </button>
+    </div>
+  )
 }
 function Person(props)
 {
